@@ -89,3 +89,38 @@ sys_uptime(void)
   release(&tickslock);
   return xticks;
 }
+
+
+// Needed for the third system call
+int my_secret_kernel_var = 0; 
+
+// Needed for the fourth system call (to get the address of sys_fork)
+extern int sys_fork(void);
+
+int
+sys_getkernelstartaddr(void)
+{
+  // Returns the starting virtual address of the kernel (KERNBASE)
+  return KERNBASE;
+}
+
+int
+sys_getkernelendaddr(void)
+{
+  // Returns the ending virtual address (PHYSTOP + KERNBASE)
+  return KERNBASE + PHYSTOP;
+}
+
+int
+sys_getkernelvariaddr(void)
+{
+  // Returns the address of a variable in kernel space
+  return (int)&my_secret_kernel_var;
+}
+
+int
+sys_getsystemcalladdr(void)
+{
+  // Returns the address of the sys_fork function itself
+  return (int)sys_fork;
+}

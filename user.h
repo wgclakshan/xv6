@@ -23,6 +23,10 @@ int getpid(void);
 char* sbrk(int);
 int sleep(int);
 int uptime(void);
+int getkernelstartaddr(void);
+int getkernelendaddr(void);
+int getkernelvariaddr(void);
+int getsystemcalladdr(void);
 
 // ulib.c
 int stat(const char*, struct stat*);

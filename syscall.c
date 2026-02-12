@@ -103,6 +103,10 @@ extern int sys_unlink(void);
 extern int sys_wait(void);
 extern int sys_write(void);
 extern int sys_uptime(void);
+extern int sys_getkernelstartaddr(void);
+extern int sys_getkernelendaddr(void);
+extern int sys_getkernelvariaddr(void);
+extern int sys_getsystemcalladdr(void);
 
 static int (*syscalls[])(void) = {
 [SYS_fork]    sys_fork,
@@ -126,6 +130,10 @@ static int (*syscalls[])(void) = {
 [SYS_link]    sys_link,
 [SYS_mkdir]   sys_mkdir,
 [SYS_close]   sys_close,
+[SYS_getkernelstartaddr] sys_getkernelstartaddr,
+[SYS_getkernelendaddr]   sys_getkernelendaddr,
+[SYS_getkernelvariaddr]  sys_getkernelvariaddr,
+[SYS_getsystemcalladdr]  sys_getsystemcalladdr,
 };
 
 void
