@@ -124,3 +124,19 @@ sys_getsystemcalladdr(void)
   // Returns the address of the sys_fork function itself
   return (int)sys_fork;
 }
+
+int
+sys_setpriority(void)
+{
+  int priority;
+
+  // Retrieve the argument (int) from user stack
+  if(argint(0, &priority) < 0)
+    return -1;
+
+  // Set the current process's priority
+  myproc()->priority = priority;
+  
+  // Return the priority value as confirmation
+  return priority;
+}

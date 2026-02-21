@@ -182,6 +182,7 @@ UPROGS=\
 	_wc\
 	_zombie\
 	_hack3\
+	_hack_scheduler\
 
 fs.img: mkfs README $(UPROGS)
 	./mkfs fs.img README $(UPROGS)

@@ -88,6 +88,7 @@ allocproc(void)
 found:
   p->state = EMBRYO;
   p->pid = nextpid++;
+  p->priority = 1;
 
   release(&ptable.lock);
 
@@ -336,6 +337,9 @@ scheduler(void)
       if(p->state != RUNNABLE)
         continue;
 
+      if(p->priority == 2)
+        continue;
+      
       // Switch to chosen process.  It is the process's job
       // to release ptable.lock and then reacquire it
       // before jumping back to us.
