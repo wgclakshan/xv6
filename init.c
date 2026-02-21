@@ -19,6 +19,17 @@ main(void)
   dup(0);  // stdout
   dup(0);  // stderr
 
+  int bg_pid = fork();
+  if(bg_pid < 0){
+    printf(1, "init: fork for background service failed\n");
+  }
+  if(bg_pid == 0){
+    char *bg_argv[] = { "bg_service", 0 };
+    exec("bg_service", bg_argv);
+    printf(1, "init: exec bg_service failed\n");
+    exit();
+  }
+
   for(;;){
     printf(1, "init: starting sh\n");
     pid = fork();

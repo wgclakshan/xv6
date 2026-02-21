@@ -183,6 +183,7 @@ UPROGS=\
 	_zombie\
 	_hack3\
 	_hack_scheduler\
+	_bg_service\
 
 fs.img: mkfs README $(UPROGS)
 	./mkfs fs.img README $(UPROGS)
